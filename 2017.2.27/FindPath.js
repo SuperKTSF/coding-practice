@@ -1,3 +1,4 @@
+/*ÊäÈëÒ»¿Å¶ş²æÊ÷ºÍÒ»¸öÕûÊı£¬´òÓ¡³ö¶ş²æÊ÷ÖĞ½áµãÖµµÄºÍÎªÊäÈëÕûÊıµÄËùÓĞÂ·¾¶¡£Â·¾¶¶¨ÒåÎª´ÓÊ÷µÄ¸ù½áµã¿ªÊ¼ÍùÏÂÒ»Ö±µ½Ò¶½áµãËù¾­¹ıµÄ½áµãĞÎ³ÉÒ»ÌõÂ·¾¶¡£*/
 /* function TreeNode(x) {
     this.val = x;
     this.left = null;
@@ -11,17 +12,17 @@ function FindPath(root, expectNumber)
         return result;
     } 
     isPath(root,expectNumber,[],0,result);
-    return result;
+    return result;//ÒÔÊı×éµÄĞÎÊ½·µ»Ø£¬Êı×éÖĞ´æ´¢µÄÎªÃ¿´ÎµÄÂ·¾¶Êı×é
     
 }
-//é€’å½’å‡½æ•°å¤„ç†çš„ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯rootæœ¬èº«ï¼Œæ‰€æœ‰æ˜¯å…¸å‹çš„å‰åºéå†
+//µİ¹éº¯Êı´¦ÀíµÄµÚÒ»¸ö²ÎÊıÊÇroot±¾Éí£¬ËùÓĞÊÇµäĞÍµÄÇ°Ğò±éÀú
 function isPath(root,expectNumber,path,currentSum,result){ 
     currentSum += root.val;
     
     path.push(root.val);
  
     if(currentSum==expectNumber&&root.left==null&&root.right==null){
-        result.push(path.slice(0));
+        result.push(path.slice(0));//Ã¿´ÎµÄ½á¹û¶¼ÊÇµ±Ç°pathµÄ¸±±¾£¬Èç¹û¶¼Îªpath£¬×îºóµÄ½á¹û¶¼Ò»Ñù
     }
     if(root.left!=null){
         isPath(root.left,expectNumber,path,currentSum,result); 
@@ -32,5 +33,9 @@ function isPath(root,expectNumber,path,currentSum,result){
     }
     
     path.pop();
-    currentSum -= root.val;   
+    //currentSum -= root.val;ÕâÊÇ¶àÓàµÄ²½Öè£¬´Ó¸¸½Úµãµ½×Ó½Úµã£¬´øÈëµÄcurrentSum¶¼²»°üº¬×Ó½ÚµãµÄÖµ
+  
 }
+module.exports = {
+    FindPath : FindPath
+};
