@@ -16,7 +16,7 @@ rl.on('close',function(){
 	args；//然后在这里进行数据的处理
 });
 
-//更简单的方式不用npm包直接读取
+//更简单的方式不用npm包直接读取，这种情况下是读取一行中的若干个数字
 process.stdin.resume();
 process.stdin.setEncoding("utf8");
 process.stdin.on("data", function(chunk) {
