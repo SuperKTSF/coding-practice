@@ -2,7 +2,7 @@ process.stdin.resume();
 process.stdin.setEncoding("utf8");
 process.stdin.on("data", function(chunk) {
     var datas = chunk.trim().split("\n");
-    for(var i = 0; i < datas.length; i++) {
+    for(var i = 0; i < datas.length; i++) {    
         var ab = datas[i].trim().split(" ");
         var a = parseInt(ab[0]);
         var b = parseInt(ab[1]);

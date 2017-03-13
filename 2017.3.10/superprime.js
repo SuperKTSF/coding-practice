@@ -5,7 +5,6 @@ var args = [];
 rl.on('line', function(data){
     args.push(data);
     rl.close();
-
 });
 
 rl.on('close', function(){
