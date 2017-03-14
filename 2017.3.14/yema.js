@@ -1,3 +1,15 @@
+process.stdin.resume();
+process.stdin.setEncoding("utf8");
+process.stdin.on("data", function(chunk) {
+    var datas = chunk.trim().split("\n");//ÕâÀï±¾ÉíÒ²ÊÇÒ»ĞĞÒ»ĞĞµÄ¶ÁÊı¾İ
+    var n = parseInt(datas[0]); // ÊäÈëµÄÒ³ÂëÊı×Ö
+	var str="";
+	for(var i =0;i<=9;i++){
+		str += NumberOf1Between1AndN_Solution(n,i)+" ";
+	}
+	console.log(str.trim());
+});
+
 function NumberOf1Between1AndN_Solution(n,m)
 {
     var temp=1;
@@ -5,9 +17,9 @@ function NumberOf1Between1AndN_Solution(n,m)
     while(Math.floor(n/temp)){
 		if(m!=0){
 			var  ab = Math.floor(n/(temp*10));
-			nums+=ab*temp;  //ç¬¬ä¸€éƒ¨åˆ†çš„æ¬¡æ•°
+			nums+=ab*temp;  //µÚÒ»²¿·ÖµÄ´ÎÊı
 			var c = Math.floor(n%(temp*10)/temp);
-			if(c>m){    //ç¬¬äºŒéƒ¨åˆ†çš„æ¬¡æ•°
+			if(c>m){    //µÚ¶ş²¿·ÖµÄ´ÎÊı
 				nums+=temp;
 			}else if(c==m){
             nums+=(n%temp+1);
@@ -15,9 +27,9 @@ function NumberOf1Between1AndN_Solution(n,m)
 			temp*=10;			
 		}else{
 			var  ab = Math.floor(n/(temp*10));
-			nums+=(ab-1)*temp;  //ç¬¬ä¸€éƒ¨åˆ†çš„æ¬¡æ•°
+			nums+=(ab-1)*temp;  //µÚÒ»²¿·ÖµÄ´ÎÊı
 			var c = Math.floor(n%(temp*10)/temp);
-			if(c>m){    //ç¬¬äºŒéƒ¨åˆ†çš„æ¬¡æ•°
+			if(c>m){    //µÚ¶ş²¿·ÖµÄ´ÎÊı
 				nums+=temp;
 			}else if(c==m){
             nums+=(n%temp+1);
@@ -26,13 +38,5 @@ function NumberOf1Between1AndN_Solution(n,m)
 		}
     }
     return nums;   
-}
-
-function a(n){
-		var str="";
-	for(var i =0;i<=9;i++){
-		str += NumberOf1Between1AndN_Solution(n,i)+" ";
-	}
-	console.log(str.trim());
 }
 
