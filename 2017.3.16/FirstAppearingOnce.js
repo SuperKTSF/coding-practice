@@ -1,5 +1,13 @@
-var  result={};//鐩殑鏄皢鍏跺彉涓哄叏灞�鍙橀噺
+//Init module if you need
+/*请实现一个函数用来找出字符流中第一个只出现一次的字符。例如，当从字符流中只读出前两个字符"go"时，第一个只出现一次的字符是"g"。
+*当从该字符流中读出前六个字符“google"时，第一个只出现一次的字符是"l"*/
 
+function Init()
+{
+    // write code here
+   var  result={};//目的是将其变为全局变量
+   global.result =result;  //用到了node的全局变量
+}
 //Insert one char from stringstream
 function Insert(ch)
 {
@@ -23,7 +31,7 @@ function FirstAppearingOnce()
 }
 
 module.exports = {
-    result : result,
+	Init : Init,
     Insert : Insert,
     FirstAppearingOnce: FirstAppearingOnce
 };
