@@ -1,18 +1,21 @@
- function TreeNode(x) {
-    this.val = x;
-    this.left = null;
-    this.right = null;
-} 
-function Deserialize(arr){
-    var node = null;
-    if(arr.length<1){
-        return null;
-    }
-    var number = arr.shift();
-    if(typeof number=="number"){  //避开特殊符号a           
-        	node= new TreeNode(number);
-    		node.left=Deserialize(arr);
-    		node.right=Deserialize(arr);
+function KthNode(pRoot, k)
+{
+    // write code here
+    var arr=[];
+    search(arr,k,pRoot); //闭包的使用
+    return arr[k-1];
+    
+    function search(arr,k,pRoot){
+        if(pRoot!=null){
+        	search(arr,pRoot.left,k);
+        	arr.push(pRoot.val);
+        	if(arr.length>=k){
+            	return; 
+        	}
+        	search(arr,pRoot.right,k);      
     	}
-    return node;
+    }
+
+    
 }
+
