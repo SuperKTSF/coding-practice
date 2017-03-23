@@ -1,10 +1,6 @@
 var rl = require("readline").createInterface(process.stdin, process.stdout);
 var args = [];
 rl.on('line', function(data){
-    args.push(data);
-    rl.close();
-});
-rl.on('line', function(data){
     args.push(data); //通常将从标准输入数据存在数组中
     rl.close();  //readline模块一开始获取数据就不会结束，必须以这方式结束获取数据
 });
