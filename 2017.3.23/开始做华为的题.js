@@ -31,7 +31,7 @@ var rl = new readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-rl.on('line', function(line) {
+rl.on('line', function(line) {  //持续的一个一个输入的过程，然后一个一个的处理
     if(num ==0){
         num = line.trim();
     }else{
@@ -218,8 +218,51 @@ function junje(str,M,K){
     }
     return count>=K?true:false;
 }
+//进制转换问题，典型的输入一个，输出一个，因为没有close，所以是持续等待输入
+var rl = require('readline')
+    .createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+ 
+rl.on('line', function(data){
+    console.log(Number.parseInt(data));
+});
 
 
+//关于质数的问题，挺好的玩的
+var readline = require("readline");
+var rl = readline.createInterface(process.stdin, process.stdout); 
+var args = [];
+
+rl.on("line", function(str){
+    args.push(str);
+    rl.close();
+});
+rl.on("close", function(){
+	var num = parseInt(args[0]);//输入一个字符串,变成字符数组
+    var str ="";
+    while(isZhishu(num)!==true){
+        var temp = isZhishu(num);
+        num = num/temp;
+        str = str+temp+" ";
+    }
+    str = str+num+" ";
+    console.log(str);
+
+});
+
+function isZhishu(num){
+    var flag = true;
+    var newnum  = Math.floor(Math.sqrt(num));
+    for(var i=2;i<=newnum;i++){
+        if(num%i==0){
+            flag = i;
+            break;
+        }
+    }
+    return flag;
+}
 
 
 
