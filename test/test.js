@@ -4,26 +4,16 @@ var args = [];
 
 rl.on("line", function(str){
     args.push(str);
-    if(args.length==2){
-        rl.close();
-    }
+    rl.close();
 });
 rl.on("close", function(){
 	var num = parseInt(args[0]);
-    var arr = args[1].trim().split(" ");
-	var str= "";
-    var result = [];
-    for(var i = 0;i<arr.length;i++){
-        var newarr = arr.slice(i+1);
-        if(newarr.indexOf(arr[i])==-1){
-            result.push(arr[i]);
+    var str = num.toString(2);
+    var count = 0;
+    for(var i = 0;i<str.length;i++){
+        if(str[i]==1){
+            count++;
         }
     }
-	for(var j = 0;j<result.length;j++){
-		str=str+result[j]+" ";
-	}
-    
-
-    console.log(str.trim());
-
+    console.log(count);
 });
