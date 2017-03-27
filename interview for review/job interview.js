@@ -140,8 +140,102 @@ function.length是指函数希望接收到的函数的参数，function.arguments.length是指实际
 以后就知道这种题怎么去解决了，可以很快的画出二叉树，然后桉树写出后序列表
 
 9、经常遇到的问题，入栈顺序为 1234567，然后求出栈顺序
+如果是简单的判断则比较好处理，直接从前往后推导就可以了，但是如果是求总次数，则比较麻烦
+目前只会最蠢的办法，求出12345的全排列，然后依次判断每个全排列是否为合适的情况
+'12'=2 '123'=5,'1234' = 14 '12345' = 42 '123456' = 132
+var readline = require("readline");
+var rl = readline.createInterface(process.stdin, process.stdout); 
+var args = [];
 
-10、还有一道题是0~99999中出现3的个数
+rl.on("line", function(str){
+    args.push(str);
+    rl.close();
+});
+rl.on("close", function(){
+	var arr = args[0].trim().split("");//输入一个字符串,变成字符数组
+	var result = [];
+	var str = "";
+	result = sortString(arr,str,[]);   //result是'123456'的全排
+	var newarr =[];
+	for(var i=0;i<result.length;i++){
+		if(IsPopOrder(args[0].trim(),result[i])){
+			newarr.push(result[i]);
+		}
+	}
+	console.log(result);
+	console.log(newarr);
+	console.log(newarr.length);
+});
+
+function sortString(arr,str,res){
+	if(arr.length == 0){
+		res.push(str);
+	}else{
+		var isUsed = {};//这个是用来判断字符数组中是否有重复元素的
+		for(var i=0;i<arr.length;i++){
+			if(!isUsed[arr[i]]){
+				var temp  = arr.splice(i,1); //获取一个元素，并从数组中删除
+				str +=temp;
+				sortString(arr,str,res);
+				arr.splice(i,0,temp); 
+				str = str.slice(0,str.length-1);
+				isUsed[temp] = true;
+			}
+		}
+	}
+	return res;
+}
+function IsPopOrder(pushV, popV)
+{
+
+    if(pushV==null||popV==null){
+        return false;
+    }
+    //方法非常的巧妙，利用插入顺序插入，利用出栈顺序出栈，如果最后全部出栈为空，则为正确的出栈顺序
+    var stack = [];
+    for(var i=0,j=0;i<pushV.length;i++){
+        stack.push(pushV[i]);
+        //while循环的目的在于判断再插入的过程中何时会出现出栈
+        while(j<popV.length&&stack[stack.length-1]==popV[j]){
+            stack.pop();
+            j++;
+        }
+    }
+    
+    return stack.length==0;
+}
+
+10、还有一道题是0~999999中出现3的个数
+所有的问题都是有规律可循的
+function NumberOf1Between1AndN_Solution(n,m)
+{
+    var temp=1;
+    var nums=0;
+    while(Math.floor(n/temp)){
+		if(m!=0){
+			var  ab = Math.floor(n/(temp*10));
+			nums+=ab*temp;  //第一部分的次数
+			var c = Math.floor(n%(temp*10)/temp);
+			if(c>m){    //第二部分的次数
+				nums+=temp;
+			}else if(c==m){
+            nums+=(n%temp+1);
+			}
+			temp*=10;			
+		}else{
+			var  ab = Math.floor(n/(temp*10));
+			nums+=(ab-1)*temp;  //第一部分的次数
+			var c = Math.floor(n%(temp*10)/temp);
+			if(c>m){    //第二部分的次数
+				nums+=temp;
+			}else if(c==m){
+            nums+=(n%temp+1);
+			}
+			temp*=10;
+		}
+    }
+    return nums;   
+}
 		
 		
 		
