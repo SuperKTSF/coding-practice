@@ -236,7 +236,74 @@ function NumberOf1Between1AndN_Solution(n,m)
     }
     return nums;   
 }
-		
+11、客户端存储
+1)本来有cookie，然后html5中的Web Storage包括了两种存储方式：sessionStorage和localStorage，并且有自己的API，不要像操作cookie那样自己封装API
+2)sessionStorage用于本地存储一个会话（session）中的数据，这些数据只有在同一个会话中的页面才能访问并且当会话结束后数据也随之销毁。因此sessionStorage不是一种持久化的本地存储，仅仅是会话级别的存储。
+3)而localStorage用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。	
+
+12、CSS中 link 和@import 的区别是？
+(1) link属于HTML标签，而@import是CSS提供的; 
+(2) 页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;
+(3) import只在IE5以上才能识别，而link是HTML标签，无兼容问题; 
+(4) link方式的样式的权重 高于@import的权重.
+
+13、position的absolute与fixed共同点与不同点
+1)相同点：都会脱离文档流，不占据空间；
+2)改变元素呈现方式，display会被设置为block；
+3)默认会被覆盖到非定位元素上
+4)不用点就是相对的元素不同
+
+14、介绍一下CSS的盒子模型？
+W3C标准盒模型，context、padding、border、margin
+IE盒模型，content部分包含了padding和border
+对用与css3中的box-sizing属性。content-box,padding-box,border-box,
+
+15、css选择器优先级算法
+优先级算法：
+1)、优先级就近原则，同权重情况下样式定义最近者为准;
+2)、载入样式以最后载入的定位为准;
+3)、!important >  id > class > tag  
+4)、!important 比 内联优先级高(style)，但内联比 id 要高
+
+16、css3有哪些特性
+1. CSS3实现圆角（border-radius），阴影（box-shadow），
+2. 对文字加特效（text-shadow、），线性渐变（gradient），旋转（transform）
+3. transform:rotate(9deg) scale(0.85,0.90) translate(0px,-30px) skew(-9deg,0deg);// 旋转,缩放,定位,倾斜
+4. 增加了更多的CSS选择器  多背景 rgba 
+5. 在CSS3中唯一引入的伪元素是 ::selection.
+6. 媒体查询，多栏布局
+7. border-image	
+8. 弹性盒子，display：flex；
+
+17、为什么要初始化CSS样式
+因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。
+
+18、块级格式上下文
+BFC，块级格式化上下文，一个创建了新的BFC的盒子是独立布局的，它决定了元素如何对其内容进行布局，以及与其他元素的关系和相互作用
+
+19、CSSSprites的理解
+CSS Sprites其实就是把网页中一些背景图片整合到一张图片文件中，再利用CSS的“background-image”，“background- repeat”，“background-position”的组合进行背景定位
+好地减少网页的http请求，从而大大的提高页面的性能，
+但是有了http2之后就不用这么做了，因为可以复用http请求
+
+20、谈谈语义化的理解
+1. 去掉或者丢失样式的时候能够让页面呈现出清晰的结构
+2. 有利于SEO：和搜索引擎建立良好沟通，有助于爬虫抓取更多的有效信息：爬虫依赖于标签来确定上下文和各个关键字的权重；
+3. 方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）以意义的方式来渲染网页；
+4. 便于团队开发和维护，语义化更具可读性
+
+21、html常见的兼容性问题
+
+22、考察原型链的继承问题
+var F=function(){};
+         Object.prototype.a=function(){};
+         Function.prototype .b=function(){};
+         var f=new F();
+分析：f是构造函数的实例，构造函数一般都继承Object对象，所以f.a可以访问到
+但是f和f.constructor(Function)没有任何的关系，所以可通过f.constructor.b来访问b
+
+23、一元操作符
+在对非数值应用一元操作符+时，会类似使用Number(),进行类型转换
 		
 		
 		

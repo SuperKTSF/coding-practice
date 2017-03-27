@@ -369,6 +369,16 @@ rl.on("close", function(){
     console.log(X+","+Y);
 });
 
+//替换掉字符串中某些不符合条件的符号，用String.replace配合正则表达式，真的是太帅了
+    var noWord = /[^a-zA-Z]/g;  
+    var repeatSpace =/\s{2,}/g;
+    str  = str.replace(noWord,function(match){  //把非字符符号全部转换为空格
+        return " ";
+    });
+    
+    str  = str.replace(repeatSpace,function(match){  //把多个空格转化为一个空格
+        return " ";
+    });
 
 
 
