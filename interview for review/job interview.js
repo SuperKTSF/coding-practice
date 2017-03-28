@@ -293,6 +293,9 @@ CSS Sprites其实就是把网页中一些背景图片整合到一张图片文件中，再利用CSS的“backgr
 4. 便于团队开发和维护，语义化更具可读性
 
 21、html常见的兼容性问题
+1)浏览器默认的margin和padding不同
+解决方案：加一个全局的 *{margin:0;padding:0;} 来统一。
+2)IE下，event对象有 x、y 属性，但是没有 pageX、pageY属性;
 
 22、考察原型链的继承问题
 var F=function(){};
@@ -304,6 +307,73 @@ var F=function(){};
 
 23、一元操作符
 在对非数值应用一元操作符+时，会类似使用Number(),进行类型转换
+
+24、浮动float以及他的工作原理
+浮动元素脱离文档流，不占据空间。浮动元素碰到包含它的边框或者浮动元素的边框停留。
+float元素引发的问题：父元素无法撑开，同等级的非浮动元素会紧随浮动元素，造成重叠
+解决浮动带来的问题：
+1)浮动父元素；
+2)给父元素添加clearfix样式
+.clearfix:after{
+	content:" ";
+	height:0;
+	clear:both;
+	visibility:hidden;
+	display:block;
+}
+3)额外标签法<div style="clear:both;"></div>(缺点是增加了无意义的标签)
+
+25、html5有哪些新特性
+1)语义化的标签
+2)audio,video API
+3)Canvas
+4)Geolocation
+5)localStorage,sessionStorage
+6)WebSocket、webworker
+
+26、如何实现浏览器内多个标签页之间的通信?
+利用cookie或者localStorage等本地存储对象
+
+27、如何对网站的文件和资源进行优化
+1)尽可能减少http请求次数，将css, js, 图片各自合并,webpack所做的事情，但是有了http2后这样做就没有意义了
+2)使用CDN(内容分发系统)，降低通信距离
+3)配置实体标签ETag,或者添加Expire/Cache-Control头,服务器端明确的告诉客户端对文件进行缓存
+4)启用Gzip压缩文件(服务器端文件),丑化处理,最小化css, js，减小文件体积
+5)将css放在页面最上面 
+6)将script放在页面最下面
+7)避免在css中使用表达式 
+8)将css, js都放在外部文件中 
+9)减少DNS查询 
+10)避免重定向 
+
+28、减少页面加载时间，其实和上面的问题有相似的地方
+减少http请求
+优化图片文件减少其尺寸
+压缩js、css代码
+服务器启用gzip压缩功能
+标明高度和宽度
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		
 		
 		
