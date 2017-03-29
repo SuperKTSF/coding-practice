@@ -353,6 +353,186 @@ float元素引发的问题：父元素无法撑开，同等级的非浮动元素会紧随浮动元素，造成重叠
 服务器启用gzip压缩功能
 标明高度和宽度
 
+29、null和undefined的区别
+1)null表示对象为空,可以理解为指向空对象的指针，数值转换后为0，而undifined表示变量定义但未初始化
+1. 变量被声明了，但没有赋值时，就等于 undefined 
+2. 调用函数时，应该提供的参数没有提供，该参数等于 undefined 
+3. 对象没有赋值的属性，该属性的值为 undefined 
+4. 函数没有返回值时，默认返回 undefined
+undefined派生自null所以undefined == null
+
+30、js延迟加载的方式有哪些？
+1)动态创建DOM script标签，在附上属性
+2)promise new promise(function(reject,resolved){})
+3)generator已经他升级过后的语法糖async
+4)懒加载方式
+
+31、如何解决跨域问题
+1)最简单的跨域资源共享CORS，http的报文头，促使服务器和浏览器进行交流Origin Access-Control-Allow-Origin
+2)jsonp.动态创建DOM，并在url中指定callback函数
+3)document.domain 和iframe
+4)websocket
+
+32、内存泄露
+任何对象在您不再拥有或需要它之后仍然存在
+1)当页面中元素被移除或替换时，若元素绑定的事件仍没被移除,若不处理则会造成内存泄露
+2)在两个对象彼此引用且彼此保留时，就会产生一个循环
+
+33、node的优缺点
+1)因为Node是基于事件驱动和无阻塞的，所以非常适合处理并发请求
+2)前后端统一js，非常让人兴奋
+缺点：
+1) Node是一个相对新的开源项目，所以不太稳定，它总是一直在变。
+
+34、前端工程师的理解
+1)实现界面交互
+2) 提升用户体验
+3) 有了Node.js，前端可以实现服务端的一些事情
+前景：
+1) 前端是最贴近用户的程序员，前端的能力就是能让产品从 90分进化到 100 分，甚至更好
+2) 参与项目，快速高质量完成实现效果图，精确到1px；
+3) 与团队成员，UI设计，产品经理的沟通；
+4) 做好的页面结构，页面重构和用户体验；
+5) 处理hack，兼容、写出优美的代码格式；
+6) 针对服务器的优化、拥抱最新前端技术。数据可视化，VR，物联网等等
+
+35、http状态码
+1)100：continue
+2)200_请求成功 204_请求成功但是没有资源可以返回
+3)301_永久重定向 302_临时重定向 303_临时重定向，但是指定get方法请求资源 304_服务器资源为更新请使用缓存
+4)400_客户端的请求报文代码有问题 401_需要认证 403_禁止访问，没有权限 404_notfound
+5)500_服务器无法访问，比如崩溃 503_服务器维修
+
+36、一个页面从输入URL到出现页面这个过程中都发生了什么
+网络传输部分：
+1)浏览器开启一个线程处理这个请求，对URL进行分析，通常是http协议，按照web的方式处理
+2)在远程DNS服务器上启动一个DNS查询。这能使浏览器获得请求对应的IP地址。并同时生成针对目标web浏览器的HTTP请求报文
+3)浏览器与远程Web服务器通过TCP三次握手协商来建立一个TCP/IP连接，并将报文分割成报文段进行传输
+4)一旦TCP/IP连接建立，浏览器会通过该连接向远程服务器发送HTTP的GET请求。远程服务器找到资源并使用HTTP响应返回该资源，值为200的HTTP响应状态表示一个正确的响应。
+5)客户端开始下载资源。
+浏览器渲染部分
+页面开始渲染DOM，JS根据DOM API操作DOM,执行事件绑定等，页面显示完成
+
+37、平时如何管理你的项目？
+1)项目的构建，考虑到后期的维护性，所以采用分功能模块搭建项目
+2)定义好全局样式
+3)提前约定好编写习惯，对页面进行标注
+4)图片都已像素大小统一命名
+
+38、经常学习前端的网站
+w3cfuns、Github、微博、nodejs、AngulaJS社区，w3cplus,百度前端学院
+
+39、javascript对象的几种创建方式
+1)工厂模式
+2)构造函数模式
+3)原型模式
+4)混合构造函数和原型模式
+5)寄生构造函数模式
+
+40、继承党的方式
+1)原型链继承，本质是重写原型对象
+2)借用构造函数，在子类构造函数中，用Father.call(this),调用父类构造函数
+3)组合的方式继承
+4)在es6中由于有了class，继承直接采用extends进行继承
+
+41、ajax的工作原理
+var xhr = new XMLHttpRequest();
+xhr.open("get",url,false)
+xhr.onreadystatechange = function (){  //设置http请求状态变化函数
+	if(xhr.readyState == 4){
+		if(xhr.status >= 200&&xhr.status<300||xhr.status ==304){
+			xhr.responseText //获取异步调用返回函数
+		}
+	}
+};
+xhr.send(null); //不需要通过请求主体发送数据
+最后利用js和DOM对页面局部刷新
+
+42、WEB攻击
+1)XSS:跨站脚本攻击，实现准备好恶意的URL，等用户点击后，页面正常，但是输入的账户密码已经发到攻击者的服务器，禁止输入脚本，或者对脚本进行转义
+2)SQL注入，对数据库进行操作
+3)跨站请求伪造
+
+43、'usestrict'严格模式解析
+这种模式使得javascript在更高的标准下运行
+1)消除javascript一些不合理不严谨地方
+2)增加运行速度
+3)为以后的版本做铺垫
+缺点是文件压缩后“usestrict”会被放到中间
+
+44、get和post的区别
+GET：一般用于信息获取，使用URL传递参数，对所发送信息的数量也有限制，一般在2000个字符，缓存一般用get
+POST：一般用于修改服务器上的资源，对所发送的信息没有限制
+在以下情况中，请使用 POST 请求：
+1. 无法使用缓存文件（更新服务器上的文件或数据库）
+2. 向服务器发送大量数据（POST 没有数据量限制）
+3. 发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠
+
+45、Javascript无阻塞加载具体方式：
+1. 将脚本放在底部。<link>还是放在head中，用以保证在js加载前，能加载出正常显示的页面。<script>标签放在</body>前。
+2. 阻塞脚本：由于每个<script>标签下载时阻塞页面解析过程，所以限制页面的<script>总数也可以改善性能。适用于内联脚本和外部脚本。
+3. 非阻塞脚本：等页面完成加载后，再加载js代码。也就是，在 window.onload 事件发出后开始下载代码。
+4. script标签的defer属性，延迟加载：支持IE4和fierfox3.5更高版本浏览器
+5. 动态脚本元素：文档对象模型（DOM）允许你使用js动态创建HTML的几乎全部文档内容。
+
+46、eval是做什么的？
+1)它的功能是把对应的字符串解析成JS代码并运行
+2)应该避免使用eval，不安全，非常耗性能（2次，一次解析成js语句，一次执行）
+
+47、通用的时间侦听函数
+主要是区分IE和其他浏览区
+1)添加事件 element.addEventListener(type,hander,false) false表示事件冒泡，因为IE不支持时间捕获 element.attachEvent('on'+type,function(handler.apply(this){})
+2)移除事件 element.removeEventListener(type,hander,false) element.detachEvent();
+3)阻止事件 event.stopPropagation() event.cancelBubble =true;
+4)消除事件默认行为 event.preventDefault()  event.returnValue = false;
+5)获取事件目标 event.target event.srcElement
+6)获取event对象的引用  event = event || window.event;
+
+48、原型链
+原型链是由一些用来继承和共享属性的对象组成的（有限的）对象链，
+访问对象的属性时，从原型链一次向上查找
+
+49、cookies的操作，没有原生API
+function setCookie(name, value, expires, path, domain, secure) {
+    var cookieText = encodeURIComponent(name) + '=' + encodeURIComponent(value);
+    if (expires instanceof Date) {
+        cookieText += '; expires=' + expires;
+    }
+    if (path) {
+        cookieText += '; expires=' + expires;
+    }
+    if (domain) {
+        cookieText += '; domain=' + domain;
+    }
+    if (secure) {
+        cookieText += '; secure';
+    }
+    document.cookie = cookieText;
+}
+// 获取cookie
+function getCookie(name) {
+    var cookieName = encodeURIComponent(name) + '=';
+    var cookieStart = document.cookie.indexOf(cookieName);
+    var cookieValue = null;
+    if (cookieStart > -1) {
+        var cookieEnd = document.cookie.indexOf(';', cookieStart);
+        if (cookieEnd == -1) {
+            cookieEnd = document.cookie.length;
+        }
+        cookieValue = decodeURIComponent(document.cookie.substring(cookieStart + cookieName.length, cookieEnd));
+    }
+    return cookieValue;
+}
+// 删除cookie
+function unsetCookie(name) {
+    document.cookie = name + "= ; expires=" + new Date(0);
+}
+
+
+
+
+
+
 
 
 
