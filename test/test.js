@@ -1,7 +1,12 @@
- function aLinkcolor(str){
-    var newStr ="";
-	for(var i=str.length-1;i>=0;i--){
-        newStr+=str[i];
-    }
-    console.log(newStr);
-};
+
+
+
+
+function func(num,arr){	
+	var numOfCurrent = Math.ceil(num*0.6); 
+	var Current =5/16;
+	for(var i = numOfCurrent;i<=num;i++){
+		
+	}
+	return Current.toFixed(5);
+}

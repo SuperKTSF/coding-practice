@@ -137,6 +137,75 @@ function func(num,arr){
 	return str;
 }
 
+///京东第一题，公司利润最大
+var numOfProduct;
+var numOfCustom;
+var one;
+var arr = [];
+var line;
+while(line= read_line()){
+    line = line.split(' ');
+	if(line.length == 2){
+    	numOfProduct = parseInt(line[0]);
+		numOfCustom = parseInt(line[1]);
+    }else{
+    	arr = line;
+    	for(one in arr){
+        	arr[one] = parseInt(arr[one]);
+        }
+	}
+}
+print(func(numOfProduct,numOfCustom,arr));//数据做好准备后调用函数输出
+
+function func(n,m,arr){
+	arr.sort(function(a,b){
+		return a-b;
+	});
+	var prise =0;
+	var maxprofit =0;
+	var endprise=0;
+	for(var i=0;i<arr.length;i++){
+		var prise = arr[i];
+		if((m-i)<=n){
+			var profit = prise*(m-i);
+		}else{
+			var profit = prise*n;
+		}		
+		if(profit>maxprofit){
+			maxprofit = profit;
+			endprise = prise;
+		}
+	}
+	return endprise;	
+}
+//京东第二题，小明正确率的问题
+var num;
+var one;
+var arr = [];
+var line;
+while(line= read_line()){
+    line = line.split(' ');
+	if(line.length == 1){
+    	num = parseInt(line[0]);
+    }else{
+    	arr = line;
+    	for(one in arr){
+        	arr[one] = parseInt(arr[one]);
+        }
+	}
+}
+print(func(num,arr));//数据做好准备后调用函数输出
+
+function func(num,arr){	
+	var numOfCurrent = Math.ceil(num*0.6); 
+	var Current =5/16;
+	for(var i = numOfCurrent;i<=num;i++){
+		
+	}
+	return Current.toFixed(5);
+}
+
+
 
 
 

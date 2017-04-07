@@ -527,6 +527,9 @@ function getCookie(name) {
 function unsetCookie(name) {
     document.cookie = name + "= ; expires=" + new Date(0);
 }
+50、link和script
+<link> 和href配合 加载css，hypertext reference超文本引用，页面加载到href时不会停下来
+<script>和src配合 加载script文件，source资源，页面会停下来等待资源加载完毕（并执行完），所以一般js放在body的最下面
 
 
 
