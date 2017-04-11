@@ -87,7 +87,7 @@ function Sum(n,m){
 	}
 	return sum.toFixed(2);
 }
-//
+//这个今日头条的笔试题，没有完全写出来
 var num;
 var one;
 var arr = [];
@@ -138,38 +138,41 @@ function func(num,arr){
 }
 
 ///京东第一题，公司利润最大
-var numOfProduct;
-var numOfCustom;
-var one;
 var arr = [];
 var line;
-while(line= read_line()){
+while(line = read_line()){
     line = line.split(' ');
-	if(line.length == 2){
-    	numOfProduct = parseInt(line[0]);
-		numOfCustom = parseInt(line[1]);
-    }else{
-    	arr = line;
-    	for(one in arr){
-        	arr[one] = parseInt(arr[one]);
-        }
-	}
+    for(var i=0; i<line.length;i++){
+      line[i] = parseInt(line[i])
+    }
+    arr = [].concat(arr, line)  //是把所有的输入数据全部变成数组后在进行分割
 }
+numOfProduct = arr[0];  //取出前面的数据
+numOfCustom = arr[1];
+arr.shift();  //取出数据后在原数组中删除
+arr.shift();
 print(func(numOfProduct,numOfCustom,arr));//数据做好准备后调用函数输出
+
 function func(n,m,arr){
-	arr.sort(function(a,b){
-		return a-b;
-	});
+	//arr.sort(function(a,b){
+	//	return b-a;
+	//});
 	var prise =0;
 	var maxprofit =0;
 	var endprise=0;
-	for(var i=0;i<arr.length;i++){
-		var prise = arr[i];
-		if((m-i)<=n){
-			var profit = prise*(m-i);
-		}else{
-			var profit = prise*n;
-		}		
+	for(var i=0;i<m;i++){
+		prise = arr[i];
+		var profit=0;
+		var count =n;
+		for(var j=0;j<m;j++){  //这种方法每一次都要去遍历整个数组，没有排序来得方便，但是排序的通过率始终不对，比较蒙蔽
+			if(count<1){
+				break;
+			}
+			if(arr[j]>=prise){
+				profit+=prise;
+				count--;
+			}
+		}
 		if(profit>maxprofit){
 			maxprofit = profit;
 			endprise = prise;
@@ -177,32 +180,95 @@ function func(n,m,arr){
 	}
 	return endprise;	
 }
-//京东第二题，小明正确率的问题
-var num;
-var one;
+//京东第二题，小明正确率的问题，二维数据的动态规划，可以解决一般的递归问题
+	var n = parseInt(read_line());
+	var a=read_line().split(" ");
+	var correct=Math.ceil(n*0.6);
+	var b=a.map(function(x){
+		return x/100;
+	});
+	var dp=[];
+	var p;
+	dp.push([1]);
+	for (var i = 1; i <= b.length; i++) {
+		var arr=[];
+		//计算i道题全部错误概率，说明i-1题肯定全错，本题也错，即dp[i-1][0]，每一行的首项都是全错
+		p=dp[i-1][0]*(1-b[i-1]);
+		arr.push(p); //每一行的首项
+		//计算i道题j道正确概率
+		for (var j = 1; j < i; j++) {
+			p=dp[i-1][j]*(1-b[i-1])+dp[i-1][j-1]*b[i-1];
+			arr.push(p);
+		}
+		//计算i道题全部正确概率,此时的j就等于i
+		p=dp[i-1][j-1]*b[i-1];
+		arr.push(p);//每一行的最后一项
+		dp.push(arr);
+	}
+    //计算概率
+    var p1=0;
+    for (var i = correct; i <= n; i++) {
+    	p1+=dp[n][i];
+    }
+print(p1.toFixed(5));
+//练习一下京东第三题，警察小偷
 var arr = [];
+var line;       //所以才用while循环读数据的方式是最保险的
+while(line = read_line()){  
+    line = line.split("");
+    arr = [].concat(arr, line)  //是把所有的输入数据全部变成数组后在进行分割
+}
+var n =arr.shift();
+//	var n = parseInt(read_line());  //这种读数据不用while循环有可能会导致数据量太多，会导致本来在一行的数据换成多行
+//  var arr=read_line().trim().split("");
+	var count=0;
+	for(var i=0;i<arr.length;i++){
+		if(arr[i]=='X'||arr[i]=='#'){
+			continue;
+		}
+		if(i-parseInt(arr[i])<0){
+			var small=0;
+		}else{
+			small=i-parseInt(arr[i]);
+		}
+		if(i+parseInt(arr[i])>=arr.length){
+			var big=arr.length -1;
+		}else{
+			big=i+parseInt(arr[i]);
+		}
+		for(var j=small;j<=big;j++){
+			if(arr[j]=='X'){
+				count++;
+				arr[j]='#';
+			}
+		}
+	}
+	print(count);
+//京东的第四题，小石头分堆
+var line;       
+var arr=read_line().split(" ");
+var n = parseInt(arr[0]);
+var k = parseInt(arr[1]);
+var score =0;
+var m = n%(2*k+1);
+var t = Math.floor(n/(2*k+1));
+if(m>=k){
+	score = 2*t+1;
+}else{
+	score = 2*t;
+}
+print(score);
+//京东的第五题，异或运算
 var line;
-while(line= read_line()){
-    line = line.split(' ');
-	if(line.length == 1){
-    	num = parseInt(line[0]);
-    }else{
-    	arr = line;
-    	for(one in arr){
-        	arr[one] = parseInt(arr[one]);
-        }
-	}
-}
-print(func(num,arr));//数据做好准备后调用函数输出
+var n = read_line();
+var str1 = read_line().trim();
+var str2 = read_line().trim();
+var num = parseInt(str1,2)^parseInt(str2,2);
+print(num);
 
-function func(num,arr){	
-	var numOfCurrent = Math.ceil(num*0.6); 
-	var Current =5/16;
-	for(var i = numOfCurrent;i<=num;i++){
-		
-	}
-	return Current.toFixed(5);
-}
+
+
+
 
 
 
