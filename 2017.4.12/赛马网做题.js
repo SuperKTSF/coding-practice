@@ -267,6 +267,21 @@ var num = parseInt(str1,2)^parseInt(str2,2);
 print(num);
 
 
+var arr = [];
+var line;
+while(line = read_line()){
+    line = line.trim();
+    arr = [].concat(arr, line) 
+}
+var result =[];
+for(var i=0;i<arr.length;i++){
+	if(result.indexOf(arr[i])==-1){
+		result.push(arr[i]);
+	}
+}
+print(result.length);
+
+
 
 
 

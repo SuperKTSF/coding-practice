@@ -531,6 +531,49 @@ function unsetCookie(name) {
 <link> 和href配合 加载css，hypertext reference超文本引用，页面加载到href时不会停下来
 <script>和src配合 加载script文件，source资源，页面会停下来等待资源加载完毕（并执行完），所以一般js放在body的最下面
 
+51、Generator
+调用Generator函数，返回一个遍历器对象，代表Generator函数的内部指针，以后每次调用generator对象的next方法，就会返回一个有着value和done属性的对象
+本质是提供了一个可以暂停执行的函数，yield语句就是暂停标志
+yield语句是同步运行的，不是异步运行，实际操作中一般让yield语句返回promis对象
+多个任务可以按顺序一个一个的执行
+
+52、promis对象
+有三个状态，不受外界的影响，只有异步操作的结果可以决定当前是哪一种状态，并且一旦状态改变就不会再变化
+有了promise对象，就可以将异步操作以同步的操作的流程表达出来
+
+53、异步
+js是单线程语言，如果没有异步编程，基本没法使用
+ES6之前的异步编程方法:
+1、回调函数
+2、事件监听
+3、发布订阅
+4、promise
+回调函数的问题就在于多个回调函数的嵌套，乱成一团，promise最先解决这个问题
+然后就是Generator函数，yield命令就是异步两个阶段的分界线，Generator函数就是异步任务的容器
+ES7提出的了async函数，其实就是Generator函数的语法糖 *变成了asyne，yield变成了await
+
+54、class
+新的class写法只是语法糖，更接近传统语言的写法，让对象原型的写法更加清晰
+
+55、BFC块级格式化上下文
+哪些元素会生成BFC
+1、根元素HTML
+2、float属性不为none
+3、position为absolute或fixed
+4、display为inline-block, table-cell, table-caption, flex, inline-flex
+5、overflow不为visible
+内部的Box会在垂直方向，一个接一个地放置。
+Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠
+每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。
+BFC的区域不会与float box重叠。
+BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。
+计算BFC的高度时，浮动元素也参与计算，防止具有浮动元素的父元素的高度塌陷，解决办法就是触发父级元素的BFC
+应用：
+BFC的区域不会与float box重叠-对应两栏布局，左侧栏为浮动元素
+清除内部浮动，父元素触发BFC，将浮动元素的高度也计算在内
+防止垂直 margin 重叠-将同一个BFC的两个盒模型中的一个套一层容器，并且触发BFC条件，就变成了两个BFC，垂直外边距就不会叠加
+
+
 
 
 
