@@ -573,6 +573,23 @@ BFC的区域不会与float box重叠-对应两栏布局，左侧栏为浮动元素
 清除内部浮动，父元素触发BFC，将浮动元素的高度也计算在内
 防止垂直 margin 重叠-将同一个BFC的两个盒模型中的一个套一层容器，并且触发BFC条件，就变成了两个BFC，垂直外边距就不会叠加
 
+56、看过jQuery源码后有哪些优点？
+1、jQuery 具体的实现，都被包含在了一个立即执行函数构造的闭包里面，为了不污染全局作用域，只在后面暴露 $ 和 jQuery 这 2 个变量给外界，尽量的避开变量冲突
+2、jQuery 源码晦涩难读的另一个原因是，使用了大量的方法重载，但是用起来却很方便：
+3、
+1）jQuery.extend(object) 为扩展 jQuery 类本身，为类添加新的静态方法；
+
+2）jQuery.fn.extend(object) 给 jQuery 对象添加实例方法，也就是通过这个 extend 添加的新方法，实例化的 jQuery 对象都能使用，因为它是挂载在 jQuery.fn 上的方法（上文有提到，jQuery.fn = jQuery.prototype ）。 
+1）jQuery.extend(): 把两个或者更多的对象合并到第一个当中，
+
+2）jQuery.fn.extend()：把对象挂载到 jQuery 的 prototype 属性，来扩展一个新的 jQuery 实例方法。
+
+也就是说，使用 jQuery.extend() 拓展的静态方法，我们可以直接使用 $.xxx 进行调用（xxx是拓展的方法名），
+
+而使用 jQuery.fn.extend() 拓展的实例方法，需要使用 $().xxx 调用。
+4、链式回调
+另一个让大家喜爱使用 jQuery 的原因是它的链式调用，这一点的实现其实很简单，只需要在要实现链式调用的方法的返回结果里，返回 this ，就能够实现链式调用了。
+
 
 
 

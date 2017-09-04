@@ -88,6 +88,24 @@ function Merge(left,right){
 //归并排序的复杂度比冒泡、选择和插入都要好，复杂度为nlog(n)
 
 //快速排序的也是基于分治的思想，但是并没有真正的将数组分开，每次随机选择一个数组中的元素，执行一次遍历后，该元素左边的都比他小，右边都比他大
+function quickSort(arr){
+	if(arr.length<=1){
+		return arr;
+	}
+	var mid = Math.floor(arr.length/2);  //随机找到一个中间值的序列
+	var value = arr.splice(mid,1);	  //找到序列对应的值，并且把它从数组中剥离出来
+	var left =[];
+	var right =[];
+	for(var i=0;i<arr.length;i++){
+		if(arr[i]<value){
+			left.push(value);
+		}else{
+			right.push(value);
+		}
+	}
+	return quickSort(left).concat([value],quickSort(right));
+}
+
 //归并排序最好为O（nlog(n)），最差为0（n2）
 
 
